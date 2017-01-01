@@ -1,3 +1,3 @@
 # PowerShell_General
 
-Just some random modules that I wrote to make things interesting
+Just some random modules that have some functions that I find interesting
