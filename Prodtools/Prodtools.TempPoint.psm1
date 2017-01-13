@@ -9,7 +9,7 @@
 	 Module Name: Prodtools
 	===========================================================================
 #>
-#region Classes 
+
 class WhoisInformation
 {
 	[string]$as;
@@ -33,9 +33,7 @@ class WhoisInformation
 Update-TypeData -TypeName WhoisInformation -MemberType ScriptProperty -MemberName Company -Value { $this.org } -Force
 Update-TypeData -TypeName WhoisInformation -MemberType ScriptProperty -MemberName ipaddress -Value { $this.query } -Force
 Update-TypeData -TypeName WhoisInformation -DefaultDisplayPropertySet ipaddress, Company, Timezone, City -DefaultDisplayProperty ipaddress -DefaultKeyPropertySet ipaddress -Force
-#endregion
 
-#region Main Functions
 function Get-WhoisInformation
 {
 	#	.EXTERNALHELP Prodtools.psm1-Help.xml
@@ -79,32 +77,8 @@ function Get-WhoisInformation
 	End { }
 }
 
-function Register-ProxyCredential
-{
-	#	.EXTERNALHELP Prodtools.psm1-Help.xml
-	#		
-	
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true)]
-		[pscredential]$credential
-	)
-	
-	$webclient = New-Object System.Net.WebClient
-	$webclient.Proxy.Credentials = $credential
-}
-#endregion
-#region new alias creation
 New-Alias gwhois -Value Get-WhoisInformation
-New-Alias rpcred -Value Register-ProxyCredential
-#endregion
-#region export-modulemember alias
-Export-ModuleMember -Alias gwhois
-Export-ModuleMember -Alias rpcred
-#endregion
-#region export-modulemember function
-Export-ModuleMember -Function Register-ProxyCredential
 Export-ModuleMember -Function Get-WhoisInformation
-#endregion
+Export-ModuleMember -Alias gwhois
+
 
