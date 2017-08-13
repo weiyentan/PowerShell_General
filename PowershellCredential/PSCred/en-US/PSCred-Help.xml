@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<helpItems schema="maml" xmlns="http://msh">
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.34-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>New-DPAPICredentialFile</command:name>
+			<maml:description>
+				<maml:para>This cmdlet will create  DPAPI credential file.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>New</command:verb>
+			<command:noun>DPAPICredentialFile</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This cmdlet creates a Powershell DPAPI credential that can be used elsewhere.</maml:para>
+			<maml:para>You will be able to pass in a credential object or just use username and password. It will output an xml file.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>New-DPAPICredentialFile</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<maml:alertSet>
+			<!--Notes-->
+			<maml:alert>
+				<maml:para>DPAPI files can only be used by a user and the machine that the Cmdlet created the DPAPI credential. This is a security measure that is part of the DPAPI system</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE 1</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-DPAPICredentialFile -credential (Get-Credential) -path c:\powershell\creds\dpapi\activedirectory.xml</dev:code>
+				<dev:remarks>
+					<maml:para>This creates a DAPI credential with the the credential object (Get-Credential) and then exports it as</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>EXAMPLE 2</maml:title>
+				<dev:code>C:\PS&gt; New-DPAPICredentialFile</dev:code>
+				<dev:remarks>
+					<maml:para />
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.34-->
+</helpItems>
