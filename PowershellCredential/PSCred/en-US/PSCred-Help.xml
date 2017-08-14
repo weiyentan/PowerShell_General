@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <helpItems schema="maml" xmlns="http://msh">
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.34-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.36-->
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--TAG: HASCOMMONPARAMETERS-->
 		<!--Command-->
 		<command:details>
 			<command:name>New-DPAPICredentialFile</command:name>
@@ -25,6 +26,17 @@
 				<maml:name>New-DPAPICredentialFile</maml:name>
 			</command:syntaxItem>
 		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Path </maml:name>
+				<maml:description>
+					<maml:para>This is the file path of the AES.key.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
 		<maml:alertSet>
 			<!--Notes-->
 			<maml:alert>
@@ -36,7 +48,7 @@
 			<command:example>
 				<maml:title>EXAMPLE 1</maml:title>
 				<maml:introduction>
-					<maml:para />
+					<maml:para>Example of how to use New-DPAPICredentialFile cmdlet</maml:para>
 				</maml:introduction>
 				<dev:code>C:\PS&gt; New-DPAPICredentialFile -credential (Get-Credential) -path c:\powershell\creds\dpapi\activedirectory.xml</dev:code>
 				<dev:remarks>
@@ -45,12 +57,221 @@
 			</command:example>
 			<command:example>
 				<maml:title>EXAMPLE 2</maml:title>
-				<dev:code>C:\PS&gt; New-DPAPICredentialFile</dev:code>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; $credential | New-DPAPICredentialFile -path c:\temp\Credential.xml</dev:code>
+				<dev:remarks>
+					<maml:para>This example shows how you can pass in a credential object pass it through the pipeline and it will output an xml</maml:para>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.34-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>New-AESKeyFile</command:name>
+			<maml:description>
+				<maml:para>This cmdlet produces a  Key file  that can be used in AES type credential passwords.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>New</command:verb>
+			<command:noun>AESKeyFile</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This cmdlet creates a key file that is used with an AES Encrypted file. This file in conjunction with the password file are used together to reconstruct a credential object</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>New-AESKeyFile</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Path </maml:name>
+				<maml:description>
+					<maml:para>This is the  path of the AES key file.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Byte</maml:name>
+				<maml:description>
+					<maml:para>This is the bytes that is used to create a key. By default it creates a 32 byte value</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue>32</dev:defaultValue>
+			</command:parameter>
+		</command:parameters>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE 1</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-AESKeyFile -path c:\temp\aes.key </dev:code>
+				<dev:remarks>
+					<maml:para>This will create a key file in the temp directory.</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>EXAMPLE 2</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-AESKeyFile -path c:\Keys\aes.key -byte 32 </dev:code>
+				<dev:remarks>
+					<maml:para>This will create a 32 byte AES key that is exported to c:\keys\ with the file name aes.keys.</maml:para>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>New-AESCredentialObject</command:name>
+			<maml:description>
+				<maml:para>This will create an AES Credential object from a AES key and password file.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>New</command:verb>
+			<command:noun>AESCredentialObject</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This cmdlet will reproduce a credential object using AES keys and password text files.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>New-AESCredentialObject</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>AESKey</maml:name>
+				<maml:description>
+					<maml:para>This is the file path of the AES key.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">string </command:parameterValue>
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Passwordfilepath</maml:name>
+				<maml:description>
+					<maml:para>This is the file path  of the password file</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Identity</maml:name>
+				<maml:description>
+					<maml:para>This is the ID of the credential object</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE 1</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-AESCredentialObject -aeskey </dev:code>
 				<dev:remarks>
 					<maml:para />
 				</dev:remarks>
 			</command:example>
 		</command:examples>
 	</command:command>
-	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.34-->
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.36-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!--Command-->
+		<command:details>
+			<command:name>New-AESPasswordFile</command:name>
+			<maml:description>
+				<maml:para>This creates a AES Password File that can be used in credential objects.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para />
+			</maml:copyright>
+			<command:verb>New</command:verb>
+			<command:noun>AESPasswordFile</command:noun>
+			<dev:version />
+		</command:details>
+		<maml:description>
+			<maml:para>This file will use the components of an AES credential which is an encrypted key. It will then use that key and pair it with the password file that it generates.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!--Parameter Sets-->
+			<command:syntaxItem>
+				<maml:name>New-AESPasswordFile</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<!--All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Password </maml:name>
+				<maml:description>
+					<maml:para>The content in this parameter will be  in the password file. It will be encrypted using the  key file that is generated by the New-AESKeyFile cmdlet</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Path </maml:name>
+				<maml:description>
+					<maml:para>This is the  path of the AESPassword file.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" variableLength="false" position="named">
+				<maml:name>Keyfile</maml:name>
+				<maml:description>
+					<maml:para>This is the file location of the keyfile</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false" />
+				<dev:defaultValue />
+			</command:parameter>
+		</command:parameters>
+		<command:examples>
+			<!--Examples-->
+			<command:example>
+				<maml:title>EXAMPLE 1</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-AESPasswordFile -path c:\temp\AESPassword.txt -keyfile c:\keys\password.key -password (read-host -message "Enter password" -asSecureString</dev:code>
+				<dev:remarks>
+					<maml:para>This will create a password using the the AES key that is located in c:\keys\password.key. It will -prompt- for the password and display as a secure string. The password will not be displayed</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>EXAMPLE 2</maml:title>
+				<maml:introduction>
+					<maml:para />
+				</maml:introduction>
+				<dev:code>C:\PS&gt; New-AESPasswordFile -path c:\temp\AESPassword.txt -keyfile c:\keys\password.key -password  password -asSecureString</dev:code>
+				<dev:remarks>
+					<maml:para>This will create a password using the the AES key that is located in c:\keys\password.key. This is just showing an example of how to pass a plain text password to the function. It is NOT recommended.</maml:para>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<!--Edited with: SAPIEN PowerShell HelpWriter 2017 v2.1.36-->
 </helpItems>
