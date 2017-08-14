@@ -44,8 +44,10 @@ function New-AESKeyFile
 		[Parameter(Position = 0)]
 		[string]$Path,
 		[ValidateNotNullOrEmpty()]
-		$byte =  32
+		[ValidateSet('16', '24', '32')]
+		$byte = '32'
 	)
+	
 	$Key = New-Object Byte[] $byte
 	[Security.Cryptography.RNGCryptoServiceProvider]::Create().GetBytes($Key)
 	Write-Verbose "Creating AES key using $byte encryption to path $Path "
