@@ -112,7 +112,7 @@ function New-AESPasswordFile
 	$PasswordFile = $path
 	$KeyF = $keyfile
 	$Key = Get-Content $Keyf
-	$Password | ConvertTo-SecureString -AsPlainText -Force $Password | ConvertFrom-SecureString -key $Key | Out-File $PasswordFile
+	$Password | ConvertTo-SecureString -AsPlainText -Force  | ConvertFrom-SecureString -key $Key | Out-File $PasswordFile
 }
 
 
