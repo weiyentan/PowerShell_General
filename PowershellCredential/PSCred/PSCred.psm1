@@ -50,7 +50,7 @@ function New-AESKeyFile
 	
 	$Key = New-Object Byte[] $byte
 	[Security.Cryptography.RNGCryptoServiceProvider]::Create().GetBytes($Key)
-	Write-Verbose "Creating AES key using $byte encryption to path $Path "
+	Write-Verbose "Creating AES key using $byte byte encryption to path $Path "
 	$Key | out-file $path
 }
 
@@ -112,6 +112,7 @@ function New-AESPasswordFile
 	$PasswordFile = $path
 	$KeyF = $keyfile
 	$Key = Get-Content $Keyf
+	Write-Verbose "Creating AES Password File to path $PasswordFile "
 	$Password | ConvertTo-SecureString -AsPlainText -Force  | ConvertFrom-SecureString -key $Key | Out-File $PasswordFile
 }
 
@@ -121,3 +122,13 @@ Export-ModuleMember -Function New-DPAPICredentialFile,
 					New-AESKeyFile,
 					New-AESCredentialObject,
 					New-AESPasswordFile
+
+New-Alias 			-Name ndpapi -Value New-DPAPICredentialFile
+New-Alias 			-Name naeskey -Value New-AESKeyFile
+New-Alias           -Name naespwd -Value New-AESPasswordFile
+New-Alias           -Name naescredobj -Value New-AESCredentialObject
+
+Export-ModuleMember -Alias ndpapi,
+					naeskey,
+					naespwd,
+					naescredobj

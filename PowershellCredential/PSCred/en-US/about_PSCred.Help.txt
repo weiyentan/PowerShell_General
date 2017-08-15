@@ -2,7 +2,8 @@
 	about_PSCred
 	
 SHORT DESCRIPTION	
-	This is a short description of the file.
+	This is module is used for creating Powershell Credentials. The two types of credentials that it uses is AES and DPAPI. 
+	PSCred supports Powershell version 2.0 or greater.
 	
 LONG DESCRIPTION
 	This is a long description of the file.
