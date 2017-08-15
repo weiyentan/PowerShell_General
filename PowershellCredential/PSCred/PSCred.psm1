@@ -27,7 +27,7 @@ function New-DPAPICredentialFile
 		[pscredential]$Credential = (Get-Credential)
 	)
 	Write-Verbose "Creating Credential file to $path"
-	$Credential | Export-Clixml $path 
+	$Credential | Export-Clixml $path
 }
 
 
@@ -113,7 +113,7 @@ function New-AESPasswordFile
 	$KeyF = $keyfile
 	$Key = Get-Content $Keyf
 	Write-Verbose "Creating AES Password File to path $PasswordFile "
-	$Password | ConvertTo-SecureString -AsPlainText -Force  | ConvertFrom-SecureString -key $Key | Out-File $PasswordFile
+	$Password | ConvertTo-SecureString -AsPlainText -Force | ConvertFrom-SecureString -key $Key | Out-File $PasswordFile
 }
 
 
@@ -123,10 +123,10 @@ Export-ModuleMember -Function New-DPAPICredentialFile,
 					New-AESCredentialObject,
 					New-AESPasswordFile
 
-New-Alias 			-Name ndpapi -Value New-DPAPICredentialFile
-New-Alias 			-Name naeskey -Value New-AESKeyFile
-New-Alias           -Name naespwd -Value New-AESPasswordFile
-New-Alias           -Name naescredobj -Value New-AESCredentialObject
+New-Alias -Name ndpapi -Value New-DPAPICredentialFile
+New-Alias -Name naeskey -Value New-AESKeyFile
+New-Alias -Name naespwd -Value New-AESPasswordFile
+New-Alias -Name naescredobj -Value New-AESCredentialObject
 
 Export-ModuleMember -Alias ndpapi,
 					naeskey,
